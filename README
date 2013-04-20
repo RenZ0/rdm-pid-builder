@@ -1,0 +1,77 @@
+RDM Pid Builder
+---------------
+
+Build RDM Pid definitions and generate data to use with the RDM PID Library.
+See this page for more infos:
+http://www.opendmx.net/index.php/RDM_PID_Definitions
+
+Project Page: http://imaginux.com/lighting/
+Licence: GNU General Public Licence 2 (See LICENCE)
+
+
+Requirements
+------------
+
+This software requires:
+
+   - webserver like apache with php/mysql support
+
+
+Installation
+------------
+
+First, you need to set up your webserver, for example on debian/ubuntu :
+sudo apt-get install apache2 mysql-server php5-mysql phpmyadmin
+
+Create a new database, for example : pids
+You can use phpmyadmin to do this, or mysql client :
+
+mysql -uroot -p
+create database pids;
+quit;
+
+Import the sql file pids_base.sql.gz into the new database.
+Again you can use phpmyadmin, or the command line :
+
+gzip -d pids_base.sql.gz
+mysql -uroot -p pids < pids_base.sql
+
+According to your webserver access, fill these files :
+pids/config.php
+
+Move the pids folder into the webserver root :
+sudo cp -r pids/ /var/www/
+
+It is ready !
+
+
+About php
+---------
+
+You need these php settings :
+register_globals = On
+short_open_tag = On
+
+Those commands could be usefull (debian/ubuntu) :
+sudo gedit /etc/php5/apache2/php.ini
+sudo /etc/init.d/apache2 restart
+
+
+Getting Started
+---------------
+
+Go to your webserver url (with your web browser), for example :
+http://127.0.0.1/pids
+
+
+Bugs
+----
+
+If you find a bug or want to submit new ideas, please send me an email :
+renzo@imaginux.com
+
+
+Copyright
+---------
+
+RDM Pid Builder is Copyright 2013 by Laurent Pierru <renzo@imaginux.com>
